@@ -1,0 +1,15 @@
+class Title():
+    def __init__(self,name_text,x_num,y_num,opacity_text=True):
+        self.name_text = name_text
+        self.x_num = x_num
+        self.y_num = y_num
+        self.opacity_text = opacity_text
+    def hide(self):
+        self.opacity_text = False
+    def show(self):
+        self.opacity_text = True
+    def print_info(self):
+        print("Кнопака", self.name_text ,"\n Розташування",self.x_num,self.y_num,"\n Видимість", self.opacity_text)
+btn1 = Title("dfg",3,23,False)
+btn1.show()
+btn1.print_info()
