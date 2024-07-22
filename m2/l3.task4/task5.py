@@ -15,6 +15,7 @@ line.addWidget(text)
 line.addWidget(winner)
 line.addWidget(winner1)
 line.addWidget(bt)
+line.addWidget(coins)
 main_win.setLayout(line)
 
 def show_numbers():
