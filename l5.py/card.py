@@ -1,11 +1,7 @@
+from app import App
+from PyQt5.QtWidgets import QRadioButton,QLabel,QSpinBox,QPushButton,QGroupBox,QHBoxLayout,QVBoxLayout,QButtonGroup
 from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import *
-App = QApplication([])
 
-win_card = QWidget()
-win_card.resize(500,400)
-win_card.setWindowTitle("Memory Card")
-win_card.move(0,0)
 
 btn_sleep = QPushButton("Відпочити")
 box_min = QSpinBox()
@@ -27,17 +23,20 @@ RadioGroup.addButton(btn_ans1)
 RadioGroup.addButton(btn_ans2)
 RadioGroup.addButton(btn_ans3)
 RadioGroup.addButton(btn_ans4)
-line1 = QVBoxLayout()
+
+line1 = QHBoxLayout()
 line2 = QVBoxLayout()
 line1.addWidget(btn_menu)
+line1.addStretch(1)
 line1.addWidget(btn_sleep)
 line1.addWidget(box_min)
+line1.addWidget(lb_min)
 
 line_btn_ans1 = QVBoxLayout()
 line_btn_ans2 = QVBoxLayout()
 
 line_btn_ans1.addWidget(btn_ans1)
-line_btn_ans2.addWidget(btn_ans2)
+line_btn_ans1.addWidget(btn_ans2)
 line_btn_ans2.addWidget(btn_ans3)
 line_btn_ans2.addWidget(btn_ans4)
 
@@ -50,11 +49,35 @@ AnswersGroupBox.setLayout(mainline_btn_ans)
 
 main_line = QVBoxLayout()
 main_line.addLayout(line1)
+
+
+
+
+ResGroupBox = QGroupBox("Результат")
+lb_res = QLabel("Правильність")
+lb_corect = QLabel("Правильна відповідь")
+line_res = QVBoxLayout()
+line_res.addWidget(lb_res)
+line_res.addWidget(lb_corect)
+ResGroupBox.setLayout(line_res)
 main_line.addWidget(lb_ans)
-main_line.addWidget(AnswersGroupBox)
+
+main_line.addWidget(AnswersGroupBox,stretch = 8)
+main_line.addWidget(ResGroupBox,stretch = 8)
+ResGroupBox.hide()
 main_line.addWidget(btn_ans)
-win_card.setLayout(main_line)
 
-
-win_card.show()
-App.exec_()
+def show_res():
+    if btn_ans.text() == "Відповісти":
+        AnswersGroupBox.hide()
+        ResGroupBox.show()
+        btn_ans.setText("Наступне питання")
+def show_ans():
+    AnswersGroupBox.show()
+    ResGroupBox.hide()
+    btn_ans.setText("Відповісти")
+    btn_ans1.setChecked(False)
+    btn_ans2.setChecked(False)
+    btn_ans3.setChecked(False)
+    btn_ans4.setChecked(False)
+btn_ans.clicked.connect(show_res)
