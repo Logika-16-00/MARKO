@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QListView,QPushButton , QFormLayout ,QLineEdit,QWidget,QHBoxLayout,QVBoxLayout
+from PyQt5.QtWidgets import QListWidget,QPushButton , QFormLayout ,QLineEdit,QWidget,QHBoxLayout,QVBoxLayout
 
 btn_add = QPushButton("Додати запитання")
 btn_clear = QPushButton ("Очистити")
@@ -22,7 +22,7 @@ wdgt_edit = QWidget()
 wdgt_edit.setLayout(form)
 
 
-list_q = QListView()
+list_q = QListWidget()
 
 line1 = QHBoxLayout()
 line1.addWidget(list_q)

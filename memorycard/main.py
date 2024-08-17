@@ -24,6 +24,6 @@ def back_to_menu():
 
 btn_menu.clicked.connect(back_to_menu)
 set_card()
-set_menu
+set_menu()
 win_card.show()
 App.exec_()
