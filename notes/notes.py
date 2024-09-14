@@ -24,11 +24,11 @@ class Ui_MainWindow(object):
         self.label = QtWidgets.QLabel(self.centralwidget)
         self.label.setGeometry(QtCore.QRect(330, 10, 211, 41))
         self.label.setObjectName("label")
-        self.list1 = QtWidgets.QListWidget(self.centralwidget)
-        self.list1.setGeometry(QtCore.QRect(330, 50, 411, 81))
-        self.list1.setStyleSheet("border-radius: 5px;\n"
+        self.list_1 = QtWidgets.QListWidget(self.centralwidget)
+        self.list_1.setGeometry(QtCore.QRect(330, 50, 411, 81))
+        self.list_1.setStyleSheet("border-radius: 5px;\n"
 "background-color: rgb(251, 255, 237);")
-        self.list1.setObjectName("list1")
+        self.list_1.setObjectName("list_1")
         self.btn_make = QtWidgets.QPushButton(self.centralwidget)
         self.btn_make.setGeometry(QtCore.QRect(330, 140, 191, 61))
         self.btn_make.setStyleSheet("border-radius: 5px;\n"
