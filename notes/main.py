@@ -13,6 +13,7 @@ class Widget(QMainWindow):
         self.ui.list_1.itemClicked.connect(self.show_note)
         self.ui.btn_save.clicked.connect(self.save_note)
         self.ui.btn_add.clicked.connect(self.add_tag)
+        self.ui.btn_search_2.clicked.connect(self.change_theme)
         for note in notes.keys():
             self.ui.list_1.addItem(note)
     def show_note(self,item):
@@ -46,6 +47,50 @@ class Widget(QMainWindow):
             note_name = self.ui.list_1.currentItem().text()
             notes[note_name]["текст"] = self.ui.textEdit.toPlainText()
         self.write_to_file()
+        
+    def change_theme(self):
+        if self.ui.btn_search_2.text()=="Змінити стиль":
+            self.ui.btn_search_2.setText("GO BACK")
+            self.ui.btn_search.setStyleSheet("border-radius: 5px;\n"
+"background-color: rgb(55, 25, 42);\n""color: white;")
+            self.ui.btn_add.setStyleSheet("border-radius: 5px;\n"
+"background-color: rgb(55, 25, 42);\n""color: white;")
+            self.ui.btn_save.setStyleSheet("border-radius: 5px;\n"
+"background-color: rgb(55, 25, 42);\n""color: white;")
+            self.ui.btn_make.setStyleSheet("border-radius: 5px;\n"
+"background-color: rgb(55, 25, 42);\n""color: white;")
+            self.ui.list_1.setStyleSheet("border-radius: 5px;\n"
+"background-color: rgb(55, 25, 42);\n""color: white;")
+            self.ui.list2.setStyleSheet("border-radius: 5px;\n"
+"background-color: rgb(55, 25, 42);\n""color: white;")
+            self.ui.btn_delete.setStyleSheet("border-radius: 5px;\n"
+"background-color: rgb(55, 25, 42);\n""color: white;")
+            self.ui.btn_detach.setStyleSheet("border-radius: 5px;\n"
+"background-color: rgb(55, 25, 42);\n""color: white;")
+            self.ui.btn_search_2.setStyleSheet("border-radius: 5px;\n"
+"background-color: rgb(55, 25, 42);\n""color: white;")
+
+
+        elif self.ui.btn_search_2.text()=="GO BACK":
+            self.ui.btn_search_2.setText("Змінити стиль")
+            self.ui.btn_add.setStyleSheet("border-radius: 5px;\n"
+"background-color: rgb(25, 53, 24);\n""color: lightblue;")
+            self.ui.btn_search.setStyleSheet("border-radius: 5px;\n"
+"background-color: rgb(25, 53, 24);\n""color: lightblue;")
+            self.ui.btn_save.setStyleSheet("border-radius: 5px;\n"
+"background-color: rgb(25, 53, 24);\n""color: lightblue;")
+            self.ui.btn_make.setStyleSheet("border-radius: 5px;\n"
+"background-color: rgb(25, 53, 24);\n""color: lightblue;")
+            self.ui.list_1.setStyleSheet("border-radius: 5px;\n"
+"background-color: rgb(25, 53, 24);\n""color: lightblue;")
+            self.ui.list2.setStyleSheet("border-radius: 5px;\n"
+"background-color: rgb(25, 53, 24);\n""color: lightblue;")
+            self.ui.btn_delete.setStyleSheet("border-radius: 5px;\n"
+"background-color: rgb(25, 53, 24);\n""color: lightblue;")
+            self.ui.btn_detach.setStyleSheet("border-radius: 5px;\n"
+"background-color: rgb(25, 53, 24);\n""color: lightblue;")
+            self.ui.btn_search_2.setStyleSheet("border-radius: 5px;\n"
+"background-color: rgb(25, 53, 24);\n""color: lightblue;")
         
 with open("notes/notes.json","r",encoding="utf-8" ) as file:
     notes = json.load(file)
