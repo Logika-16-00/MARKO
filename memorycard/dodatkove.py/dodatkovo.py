@@ -12,7 +12,7 @@ def додати_запис(filename):
         file.write(запис + "\n")
 
 def пошук_ключового_слова(filename):
-    ключове_слово = input("Введіть ключове слово: ")
+    ключове_слово = input("Введіть ключове слов: ")
     try:
         with open(filename, 'r') as file:
             for line in file:
