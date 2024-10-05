@@ -72,7 +72,9 @@ class Ui_MainWindow(object):
         self.label_2.setGeometry(QtCore.QRect(340, 270, 211, 41))
         self.label_2.setObjectName("label_2")
         self.lineEdit = QtWidgets.QLineEdit(self.centralwidget)
-        self.lineEdit.setGeometry(QtCore.QRect(340, 419, 401, 21))
+        self.lineEdit.setGeometry(QtCore.QRect(340, 419, 411, 25))
+        self.lineEdit.setStyleSheet("border-radius: 5px;\n"
+"background-color: rgb(255, 255, 238);")
         self.lineEdit.setObjectName("lineEdit")
         self.btn_search_2 = QtWidgets.QPushButton(self.centralwidget)
         self.btn_search_2.setGeometry(QtCore.QRect(330, 580, 411, 51))
