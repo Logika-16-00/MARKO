@@ -16,6 +16,7 @@ class Widget(QMainWindow):
         self.ui.btn_search_2.clicked.connect(self.change_theme)
         self.ui.btn_delete.clicked.connect(self.delete_note)
         self.ui.btn_detach.clicked.connect(self.delete_tag)
+        self.ui.lineEdit.textChanged.connect(self.search)
         for note in notes.keys():
             self.ui.list_1.addItem(note)
     def show_note(self,item):
@@ -53,6 +54,19 @@ class Widget(QMainWindow):
     def write_to_file(self):
         with open("notes/notes.json","w",encoding="utf-8" ) as file:
             json.dump(notes,file,ensure_ascii=False)
+
+    def search(self):
+        search_tag = self.ui.lineEdit.text().strip().lower()
+        self.ui.list_1.clear()
+        if not search_tag:
+            for note_name in notes.keys():
+                self.ui.list_1.addItem(note_name)
+            return
+        for note_name in notes.keys():
+            if search_tag in notes[note_name]["теги"]:
+                self.ui.list_1.addItem(note_name)
+            self.ui.list_2.clear()
+                
 
     def delete_tag (self):
         if self.ui.list_1.currentItem() and self.ui.list2.currentItem():
