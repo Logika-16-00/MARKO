@@ -6,12 +6,16 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>794</width>
-    <height>600</height>
+    <width>707</width>
+    <height>584</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: lightblue;
+</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QPushButton" name="btn_dir">
@@ -24,8 +28,9 @@
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(116, 116, 116);
-color: rgb(255, 255, 255);</string>
+     <string notr="true">background-color: rgb(123, 199, 87);
+color: rgb(255, 255, 255);
+border_radius: 20px;</string>
     </property>
     <property name="text">
      <string>Папка</string>
@@ -36,13 +41,14 @@ color: rgb(255, 255, 255);</string>
      <rect>
       <x>150</x>
       <y>490</y>
-      <width>121</width>
+      <width>101</width>
       <height>51</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(116, 116, 116);
-color: rgb(255, 255, 255);</string>
+     <string notr="true">background-color: rgb(123, 199, 87);
+color: rgb(255, 255, 255);
+border_radius: 20px;</string>
     </property>
     <property name="text">
      <string>Вліво</string>
@@ -51,15 +57,16 @@ color: rgb(255, 255, 255);</string>
    <widget class="QPushButton" name="btn_right">
     <property name="geometry">
      <rect>
-      <x>280</x>
+      <x>260</x>
       <y>490</y>
-      <width>121</width>
+      <width>101</width>
       <height>51</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(116, 116, 116);
-color: rgb(255, 255, 255);</string>
+     <string notr="true">background-color: rgb(123, 199, 87);
+color: rgb(255, 255, 255);
+border_radius: 20px;</string>
     </property>
     <property name="text">
      <string>Вправо</string>
@@ -68,15 +75,16 @@ color: rgb(255, 255, 255);</string>
    <widget class="QPushButton" name="btn_flip">
     <property name="geometry">
      <rect>
-      <x>410</x>
+      <x>370</x>
       <y>490</y>
-      <width>121</width>
+      <width>101</width>
       <height>51</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(116, 116, 116);
-color: rgb(255, 255, 255);</string>
+     <string notr="true">background-color: rgb(123, 199, 87);
+color: rgb(255, 255, 255);
+border_radius: 20px;</string>
     </property>
     <property name="text">
      <string>Дзеркало</string>
@@ -85,15 +93,16 @@ color: rgb(255, 255, 255);</string>
    <widget class="QPushButton" name="btn_sharp">
     <property name="geometry">
      <rect>
-      <x>540</x>
+      <x>480</x>
       <y>490</y>
-      <width>121</width>
+      <width>101</width>
       <height>51</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(116, 116, 116);
-color: rgb(255, 255, 255);</string>
+     <string notr="true">background-color: rgb(123, 199, 87);
+color: rgb(255, 255, 255);
+border_radius: 20px;</string>
     </property>
     <property name="text">
      <string>Різкість</string>
@@ -102,15 +111,16 @@ color: rgb(255, 255, 255);</string>
    <widget class="QPushButton" name="btn_bw">
     <property name="geometry">
      <rect>
-      <x>670</x>
+      <x>590</x>
       <y>490</y>
-      <width>121</width>
+      <width>101</width>
       <height>51</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(116, 116, 116);
-color: rgb(255, 255, 255);</string>
+     <string notr="true">background-color: rgb(123, 199, 87);
+color: rgb(255, 255, 255);
+border_radius: 20px;</string>
     </property>
     <property name="text">
      <string>Ч/Б</string>
@@ -125,15 +135,22 @@ color: rgb(255, 255, 255);</string>
       <height>471</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 255);</string>
+    </property>
    </widget>
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>166</x>
+      <x>150</x>
       <y>70</y>
-      <width>621</width>
+      <width>541</width>
       <height>401</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">
+background-color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
      <string>TextLabel</string>
@@ -145,8 +162,8 @@ color: rgb(255, 255, 255);</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>794</width>
-     <height>26</height>
+     <width>707</width>
+     <height>18</height>
     </rect>
    </property>
   </widget>

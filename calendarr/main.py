@@ -3,7 +3,7 @@ from xml.etree.ElementTree import QName
 from PyQt5.QtCore import QUrl
 from PyQt5.QtWidgets import QApplication
 from PyQt5.QtWidgets import QMainWindow
-from ui import Ui_MainWindow
+from editor.ui import Ui_MainWindow
 from PyQt5.QtMultimedia import QMediaPlayer, QMediaContent
 
 
