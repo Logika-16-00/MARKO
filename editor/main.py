@@ -1,5 +1,5 @@
 from PyQt5.QtCore import QEvent
-from PyQt5.QtWidgets import QApplication,QInputDialog
+from PyQt5.QtWidgets import QApplication,QInputDialog,QMessageBox
 from PyQt5.QtWidgets import QMainWindow
 from PyQt5.QtGui import QPixmap
 from ui import Ui_MainWindow
@@ -24,12 +24,12 @@ class Widget(QMainWindow):
         self.ui.btn_sharp.clicked.connect(self.sharpen_image)
         self.ui.btn_dir.clicked.connect(self.show_files)
         self.ui.listWidget.itemClicked.connect(self.show_picture)
+        self.ui.btn_save.clicked.connect(self.save_image)
         # self.image = Image.open("")
     def update_image(self,image = None):
         self.ui.label.hide()
         if image:
-            self.image.save("copy.png")
-            pixmap = QPixmap("copy.png")
+            pixmap = QPixmap(image)
             w, h = self.ui.label.width(), self.ui.label.height()
             pixmap = pixmap.scaled(w, h)
             self.ui.label.setPixmap(pixmap)
@@ -39,24 +39,37 @@ class Widget(QMainWindow):
     def rotate_left(self):
         self.image = self.image.rotate(90)
         self.update_image()
+        self.image.save("copy.png")
+        self.update_image("copy.png")
+
 
     
     def rotate_right(self):
         self.image = self.image.rotate(-90)
         self.update_image()
+        self.image.save("copy.png")
+        self.update_image("copy.png")
+
 
 
     def flip_image(self):
         self.image = self.image.transpose(Image.FLIP_LEFT_RIGHT)
-        self.update_image()
+        self.image.save("copy.png")
+        self.update_image("copy.png")
 
     def bw_image(self):
         self.image = self.image.convert("L")
         self.update_image()
+        self.image.save("copy.png")
+        self.update_image("copy.png")
+
 
     def sharpen_image(self):
         self.image = self.image.filter(ImageFilter.SHARPEN)
         self.update_image()
+        self.image.save("copy.png")
+        self.update_image("copy.png")
+
 
 
     def choose_dir(self):
@@ -84,9 +97,23 @@ class Widget(QMainWindow):
             for file in filter_files:
                 self.ui.listWidget.addItem(file)
 
+    def save_image(self):
+        if self.image:
+            save_path, _ = QFileDialog.getSaveFileName(self,"Зберегти файл",workdir, "Images (*.png *.jpg *.jpeg *.bmp *.gif)")
+            if save_path:
+                self.image.save(save_path)
+                QMessageBox.information(self,"Успіх","Зображення успішно збережено!")
+            else:
+                QMessageBox.warning(self,"Увага","Файл для зображення не обрано.")
+        else:
+            QMessageBox.warning(self,"Увага","Немає зображення для збереження")
+                
+            
+
     def show_picture(self):
         if self.ui.listWidget.currentRow() >= 0:
             filename = self.ui.listWidget.currentItem().text()
+            global image_path
             image_path = os.path.join(workdir,filename)
             self.image = Image.open(image_path)
             self.update_image(image_path)
@@ -97,6 +124,5 @@ app = QApplication([])
 ex = Widget()
 ex.show()
 app.exec_()
-
 
 

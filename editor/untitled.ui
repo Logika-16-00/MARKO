@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>707</width>
+    <width>735</width>
     <height>584</height>
    </rect>
   </property>
@@ -30,7 +30,7 @@
     <property name="styleSheet">
      <string notr="true">background-color: rgb(123, 199, 87);
 color: rgb(255, 255, 255);
-border_radius: 20px;</string>
+border-radius: 10px;</string>
     </property>
     <property name="text">
      <string>Папка</string>
@@ -39,16 +39,16 @@ border_radius: 20px;</string>
    <widget class="QPushButton" name="btn_left">
     <property name="geometry">
      <rect>
-      <x>150</x>
+      <x>140</x>
       <y>490</y>
-      <width>101</width>
-      <height>51</height>
+      <width>91</width>
+      <height>41</height>
      </rect>
     </property>
     <property name="styleSheet">
      <string notr="true">background-color: rgb(123, 199, 87);
 color: rgb(255, 255, 255);
-border_radius: 20px;</string>
+border-radius: 10px;</string>
     </property>
     <property name="text">
      <string>Вліво</string>
@@ -57,16 +57,16 @@ border_radius: 20px;</string>
    <widget class="QPushButton" name="btn_right">
     <property name="geometry">
      <rect>
-      <x>260</x>
+      <x>240</x>
       <y>490</y>
-      <width>101</width>
-      <height>51</height>
+      <width>91</width>
+      <height>41</height>
      </rect>
     </property>
     <property name="styleSheet">
      <string notr="true">background-color: rgb(123, 199, 87);
 color: rgb(255, 255, 255);
-border_radius: 20px;</string>
+border-radius: 10px;</string>
     </property>
     <property name="text">
      <string>Вправо</string>
@@ -75,16 +75,16 @@ border_radius: 20px;</string>
    <widget class="QPushButton" name="btn_flip">
     <property name="geometry">
      <rect>
-      <x>370</x>
+      <x>340</x>
       <y>490</y>
-      <width>101</width>
-      <height>51</height>
+      <width>91</width>
+      <height>41</height>
      </rect>
     </property>
     <property name="styleSheet">
      <string notr="true">background-color: rgb(123, 199, 87);
 color: rgb(255, 255, 255);
-border_radius: 20px;</string>
+border-radius: 10px;</string>
     </property>
     <property name="text">
      <string>Дзеркало</string>
@@ -93,16 +93,16 @@ border_radius: 20px;</string>
    <widget class="QPushButton" name="btn_sharp">
     <property name="geometry">
      <rect>
-      <x>480</x>
+      <x>440</x>
       <y>490</y>
-      <width>101</width>
-      <height>51</height>
+      <width>91</width>
+      <height>41</height>
      </rect>
     </property>
     <property name="styleSheet">
      <string notr="true">background-color: rgb(123, 199, 87);
 color: rgb(255, 255, 255);
-border_radius: 20px;</string>
+border-radius: 10px;</string>
     </property>
     <property name="text">
      <string>Різкість</string>
@@ -111,16 +111,16 @@ border_radius: 20px;</string>
    <widget class="QPushButton" name="btn_bw">
     <property name="geometry">
      <rect>
-      <x>590</x>
+      <x>540</x>
       <y>490</y>
-      <width>101</width>
-      <height>51</height>
+      <width>91</width>
+      <height>41</height>
      </rect>
     </property>
     <property name="styleSheet">
      <string notr="true">background-color: rgb(123, 199, 87);
 color: rgb(255, 255, 255);
-border_radius: 20px;</string>
+border-radius: 10px;</string>
     </property>
     <property name="text">
      <string>Ч/Б</string>
@@ -144,7 +144,7 @@ border_radius: 20px;</string>
      <rect>
       <x>150</x>
       <y>60</y>
-      <width>541</width>
+      <width>581</width>
       <height>421</height>
      </rect>
     </property>
@@ -156,13 +156,31 @@ background-color: rgb(255, 255, 255);</string>
      <string>TextLabel</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="btn_bw_2">
+    <property name="geometry">
+     <rect>
+      <x>640</x>
+      <y>490</y>
+      <width>91</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(123, 199, 87);
+color: rgb(255, 255, 255);
+border-radius: 10px;</string>
+    </property>
+    <property name="text">
+     <string>Зберегти</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>707</width>
+     <width>735</width>
      <height>18</height>
     </rect>
    </property>
