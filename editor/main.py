@@ -16,7 +16,7 @@ class Widget(QMainWindow):
         self.ui.setupUi(self)
         self.image = None
 
-        self.image = Image.open("Губка_БОБ_персонаж.png")
+        # self.image = Image.open("Губка_БОБ_персонаж.png")
         self.ui.btn_left.clicked.connect(self.rotate_left)
         self.ui.btn_right.clicked.connect(self.rotate_right)
         self.ui.btn_flip.clicked.connect(self.flip_image)
