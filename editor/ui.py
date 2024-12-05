@@ -14,7 +14,11 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
+<<<<<<< HEAD
         MainWindow.setFixedSize(707, 584)
+=======
+        MainWindow.resize(735, 584)
+>>>>>>> 74e5a7dedb0229dcc2583d649f10139a7dc2c3fa
         MainWindow.setStyleSheet("background-color: lightblue;\n"
 "")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
@@ -23,50 +27,56 @@ class Ui_MainWindow(object):
         self.btn_dir.setGeometry(QtCore.QRect(10, 10, 131, 51))
         self.btn_dir.setStyleSheet("background-color: rgb(123, 199, 87);\n"
 "color: rgb(255, 255, 255);\n"
-"border_radius: 20px;")
+"border-radius: 10px;")
         self.btn_dir.setObjectName("btn_dir")
         self.btn_left = QtWidgets.QPushButton(self.centralwidget)
-        self.btn_left.setGeometry(QtCore.QRect(150, 490, 101, 51))
+        self.btn_left.setGeometry(QtCore.QRect(140, 490, 91, 41))
         self.btn_left.setStyleSheet("background-color: rgb(123, 199, 87);\n"
 "color: rgb(255, 255, 255);\n"
-"border_radius: 20px;")
+"border-radius: 10px;")
         self.btn_left.setObjectName("btn_left")
         self.btn_right = QtWidgets.QPushButton(self.centralwidget)
-        self.btn_right.setGeometry(QtCore.QRect(260, 490, 101, 51))
+        self.btn_right.setGeometry(QtCore.QRect(240, 490, 91, 41))
         self.btn_right.setStyleSheet("background-color: rgb(123, 199, 87);\n"
 "color: rgb(255, 255, 255);\n"
-"border_radius: 20px;")
+"border-radius: 10px;")
         self.btn_right.setObjectName("btn_right")
         self.btn_flip = QtWidgets.QPushButton(self.centralwidget)
-        self.btn_flip.setGeometry(QtCore.QRect(370, 490, 101, 51))
+        self.btn_flip.setGeometry(QtCore.QRect(340, 490, 91, 41))
         self.btn_flip.setStyleSheet("background-color: rgb(123, 199, 87);\n"
 "color: rgb(255, 255, 255);\n"
-"border_radius: 20px;")
+"border-radius: 10px;")
         self.btn_flip.setObjectName("btn_flip")
         self.btn_sharp = QtWidgets.QPushButton(self.centralwidget)
-        self.btn_sharp.setGeometry(QtCore.QRect(480, 490, 101, 51))
+        self.btn_sharp.setGeometry(QtCore.QRect(440, 490, 91, 41))
         self.btn_sharp.setStyleSheet("background-color: rgb(123, 199, 87);\n"
 "color: rgb(255, 255, 255);\n"
-"border_radius: 20px;")
+"border-radius: 10px;")
         self.btn_sharp.setObjectName("btn_sharp")
         self.btn_bw = QtWidgets.QPushButton(self.centralwidget)
-        self.btn_bw.setGeometry(QtCore.QRect(590, 490, 101, 51))
+        self.btn_bw.setGeometry(QtCore.QRect(540, 490, 91, 41))
         self.btn_bw.setStyleSheet("background-color: rgb(123, 199, 87);\n"
 "color: rgb(255, 255, 255);\n"
-"border_radius: 20px;")
+"border-radius: 10px;")
         self.btn_bw.setObjectName("btn_bw")
         self.listWidget = QtWidgets.QListWidget(self.centralwidget)
         self.listWidget.setGeometry(QtCore.QRect(10, 70, 131, 471))
         self.listWidget.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.listWidget.setObjectName("listWidget")
         self.label = QtWidgets.QLabel(self.centralwidget)
-        self.label.setGeometry(QtCore.QRect(150, 70, 541, 401))
+        self.label.setGeometry(QtCore.QRect(150, 60, 581, 421))
         self.label.setStyleSheet("\n"
 "background-color: rgb(255, 255, 255);")
         self.label.setObjectName("label")
+        self.btn_save = QtWidgets.QPushButton(self.centralwidget)
+        self.btn_save.setGeometry(QtCore.QRect(640, 490, 91, 41))
+        self.btn_save.setStyleSheet("background-color: rgb(123, 199, 87);\n"
+"color: rgb(255, 255, 255);\n"
+"border-radius: 10px;")
+        self.btn_save.setObjectName("btn_save")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 707, 18))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 735, 18))
         self.menubar.setObjectName("menubar")
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
@@ -86,6 +96,7 @@ class Ui_MainWindow(object):
         self.btn_sharp.setText(_translate("MainWindow", "Різкість"))
         self.btn_bw.setText(_translate("MainWindow", "Ч/Б"))
         self.label.setText(_translate("MainWindow", "TextLabel"))
+        self.btn_save.setText(_translate("MainWindow", "Зберегти"))
 
 
 if __name__ == "__main__":
