@@ -1,23 +1,14 @@
 from PyQt5.QtCore import QEvent
-<<<<<<< HEAD
-from PyQt5.QtWidgets import QApplication,QInputDialog, QFileDialog
-=======
-from PyQt5.QtWidgets import QApplication,QInputDialog,QMessageBox
->>>>>>> 74e5a7dedb0229dcc2583d649f10139a7dc2c3fa
+from PyQt5.QtWidgets import QApplication,QInputDialog, QFileDialog,QMessageBox
 from PyQt5.QtWidgets import QMainWindow
 from PyQt5.QtGui import QPixmap
 from ui import Ui_MainWindow
 from PIL import Image
 from PIL import ImageFilter
 from PIL import ImageEnhance
-<<<<<<< HEAD
 import os
 
 
-=======
-from PyQt5.QtWidgets import QFileDialog
-import os
->>>>>>> 74e5a7dedb0229dcc2583d649f10139a7dc2c3fa
 
 class Widget(QMainWindow):
     def   __init__(self):
@@ -29,7 +20,6 @@ class Widget(QMainWindow):
         # self.image = Image.open("Губка_БОБ_персонаж.png")
         self.ui.btn_left.clicked.connect(self.rotate_left)
         self.ui.btn_right.clicked.connect(self.rotate_right)
-<<<<<<< HEAD
         self.ui.btn_bw.clicked.connect(self.bw_image)
         self.ui.btn_flip.clicked.connect(self.flip_image)
         self.ui.btn_sharp.clicked.connect(self.sharp_image)
@@ -45,25 +35,6 @@ class Widget(QMainWindow):
         self.ui.label.setPixmap(pixmap)
         self.ui.label.show()
     
-=======
-        self.ui.btn_flip.clicked.connect(self.flip_image)
-        self.ui.btn_bw.clicked.connect(self.bw_image)
-        self.ui.btn_sharp.clicked.connect(self.sharpen_image)
-        self.ui.btn_dir.clicked.connect(self.show_files)
-        self.ui.listWidget.itemClicked.connect(self.show_picture)
-        self.ui.btn_save.clicked.connect(self.save_image)
-        # self.image = Image.open("")
-    def update_image(self,image = None):
-        self.ui.label.hide()
-        if image:
-            pixmap = QPixmap(image)
-            w, h = self.ui.label.width(), self.ui.label.height()
-            pixmap = pixmap.scaled(w, h)
-            self.ui.label.setPixmap(pixmap)
-            self.ui.label.show()
-
-
->>>>>>> 74e5a7dedb0229dcc2583d649f10139a7dc2c3fa
     def rotate_left(self):
         self.image = self.image.rotate(90)
         self.update_image()
@@ -147,7 +118,6 @@ class Widget(QMainWindow):
             self.update_image(image_path)
 
 
-<<<<<<< HEAD
     def bw_image(self):
         self.image = self.image.convert("L")
         self.update_image()
@@ -187,9 +157,6 @@ class Widget(QMainWindow):
 
 
 
-=======
-        
->>>>>>> 74e5a7dedb0229dcc2583d649f10139a7dc2c3fa
 app = QApplication([])
 ex = Widget()
 ex.show()
