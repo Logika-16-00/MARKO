@@ -13,8 +13,8 @@ mixer.music.play()
 font.init()
 font1 = font.Font(None,70)
 font2 = font.Font(None,20)
-win = font1.render('You win',1,(23,231,43))
-lose = font1.render('You lose',1,(250,81,9))
+win = font1.render('You win',1,(23,250,3))
+lose = font1.render('You lose',1,(250,1,9))
 
 
 money = mixer.Sound("money.ogg")
@@ -63,20 +63,31 @@ class Wall(sprite.Sprite):
 
     def wall_draw(self):
         wn.blit(self.wall,(self.rect.x,self.rect.y))
-color = (32,54,122)
+
+color = (0,4,0)
 wall1 = Wall(color,0,0,700,10)
 wall2 = Wall(color,0,700-10,700,10)
 wall3 = Wall(color,0,0,10,600)
 wall4 = Wall(color,700-10,0,10,700)
-
-hero = Player(200,200,"hero.png",100,100,5,3)
-enemy = Player(400,400,"cyborg.png",100,100,6,0)
-gold = Player(650,450,"treasure.png",50,50,0,0)
-
+wall5 = Wall(color,300,120,10,700)
+wall6 = Wall(color,430,0,10,300)
+wall7 = Wall(color,570,120,10,700)
+wall8 = Wall(color,120,0,10,380)
+wall9 = Wall(color,10,490,700,10)
+wall10 = Wall(color,120,380,70,10)
+wall11 = Wall(color,240,120,70,10)
+hero = Player(20,50,"hero.png",90,90,5,3)
+enemy = Player(400,300,"cyborg.png",90,90,6,0)
+gold = Player(590,405,"treasure.png",75,75,0,0)
+dx = 3
 while True:
     for e in event.get():
         if e.type == QUIT:
             quit()
+
+    enemy.rect.x += dx
+    if enemy.rect.x>490 or enemy.rect.x<300:
+        dx *= -1
     wn.blit(fon,(0,0))
     hero.draw()
     hero.update()
@@ -86,14 +97,33 @@ while True:
     wall2.wall_draw()
     wall3.wall_draw()
     wall4.wall_draw()
+    wall5.wall_draw()
+    wall6.wall_draw()
+    wall7.wall_draw()
+    wall8.wall_draw()
+    wall9.wall_draw()
+    wall10.wall_draw()
+    wall11.wall_draw()
+    
+
 
     if sprite.collide_rect(hero,enemy):
         kick.play()
-        wn.blit(lose,(200,200))
-        #game = 0
+        wn.blit(lose,(250,225))
+        hero.rect.x = 20
+        hero.rect.y=50
+
+    walls = [wall1,wall2,wall3,wall4,wall5,wall6,wall7,wall8,wall9,wall10,wall11]
+    for wall in walls:
+        if sprite.collide_rect(wall,hero):  
+            wn.blit(lose,(250,225))
+            hero.rect.x = 20
+            hero.rect.y=50
+            
     if sprite.collide_rect(hero,gold):
         money.play()
-        wn.blit(win,(200,200))
+        wn.blit(win,(250,225))
+        
         
 
 
