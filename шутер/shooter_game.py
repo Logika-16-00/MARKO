@@ -12,6 +12,17 @@ clock = time.Clock()
 mixer.init()
 mixer.music.load("space.ogg")
 mixer.music.play()
+font.init()
+font1 = font.Font(None,30)
+font2 = font.Font(None,80)
+global lose,catch
+lose = 0
+catch = 0
+label_lose = font1.render(f'Пропущені: {lose}',True,(255,255,255))
+label_catch = font1.render(f'Збито: {catch}',True,(255,255,255))
+text_win = font2.render('You win!',True,(25,255,2))
+text_lose = font2.render('You lose!',True,(255,25,2))
+text_wait = font1.render("Wait",True,(255,255,255))
 
 class Player(sprite.Sprite):
     def __init__(self,x,y,image_p,size_x,size_y,speed,life):
@@ -31,13 +42,36 @@ class Player(sprite.Sprite):
             self.rect.x += 5
         if keys[K_a] and self.rect.x>0:
             self.rect.x -= 5
+        if keys[K_SPACE]:
+            self.fire( )
+    def fire(self):
+        bullet = Bullet(self.rect.x+20,self.rect.y,"bullet.png",15,20,15,0)
+        bullets.add(bullet)
+
+
+bullets = sprite.Group()        
 class Enemy(Player):
     def update(self):
-
-        self.rect.y = self.speed
+        global lose
+        self.rect.y += self.speed
         if self.rect.y>500:
             self.rect.y = -10
+            self.rect.x = randint(0,635)
+            lose += 1
+
+
+class Bullet(Player):
+    def update(self):
+        self.rect.y -= self.speed
+        if self.rect.y >500:
+            self.rect.y = -10
+            lose += 1
 game = 1
+
+
+
+
+
 rocket = Player(310,360,"rocket.png",60,120,5,5)
 monsters = sprite.Group()
 for i in range(5):
@@ -49,10 +83,26 @@ while game:
             game = 0
 
     if not finish:
+        label_lose = font1.render(f'Пропущені: {lose}',True,(255,255,255))
+        label_catch = font1.render(f'Збито: {catch}',True,(255,255,255))
         wn.blit(fon,(0,0))
         rocket.draw()
         rocket.update()
+        bullets.draw(wn)
+        bullets.update()
         monsters.draw(wn)
+        monsters.update()
+        wn.blit(label_catch,(10,10))
+        wn.blit(label_lose,(10,40))
+    if lose >= 5:
+        wn.blit(text_lose,(250,225))
+        finish = 1
+        
+
+
+
+
+
     display.update()
     clock.tick(fps)
     
