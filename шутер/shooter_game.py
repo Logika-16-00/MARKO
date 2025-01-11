@@ -12,6 +12,7 @@ clock = time.Clock()
 mixer.init()
 mixer.music.load("space.ogg")
 mixer.music.play()
+fire_s = mixer.Sound("fire.ogg")
 font.init()
 font1 = font.Font(None,30)
 font2 = font.Font(None,80)
@@ -42,8 +43,7 @@ class Player(sprite.Sprite):
             self.rect.x += 5
         if keys[K_a] and self.rect.x>0:
             self.rect.x -= 5
-        if keys[K_SPACE]:
-            self.fire( )
+        
     def fire(self):
         bullet = Bullet(self.rect.x+20,self.rect.y,"bullet.png",15,20,15,0)
         bullets.add(bullet)
@@ -72,15 +72,27 @@ game = 1
 
 
 
-rocket = Player(310,360,"rocket.png",60,120,5,5)
+rocket = Player(310,360,"rocket.png",60,120,45,5)
 monsters = sprite.Group()
 for i in range(5):
     enemy = Enemy(randint(0,650),0,'ufo.png',65,60,randint(1,5),0)
     monsters.add(enemy)
+
+
+asteroids = sprite.Group() 
+for i in range(3):
+    asteroid = Enemy(randint(0,650),0,'asteroid.png',65,60,randint(1,5),0)
+    asteroids.add(asteroid)
+
+level_boss = 0
 while game:
     for e in event.get():
         if e.type == QUIT:
             game = 0
+        elif e.type == KEYDOWN:
+            if e.key == K_SPACE:
+                fire_s.play() 
+                rocket.fire()
 
     if not finish:
         label_lose = font1.render(f'Пропущені: {lose}',True,(255,255,255))
@@ -92,12 +104,33 @@ while game:
         bullets.update()
         monsters.draw(wn)
         monsters.update()
+        asteroids.draw(wn)
+        asteroids.update()
         wn.blit(label_catch,(10,10))
         wn.blit(label_lose,(10,40))
-    if lose >= 5:
-        wn.blit(text_lose,(250,225))
+
+        colides = sprite.groupcollide(monsters,bullets,True,True)
+        for c in colides:
+            catch+=1
+            enemy = Enemy(randint(0,650),0,'ufo.png',65,60,randint(1,5),0)
+            monsters.add(enemy)
+        colides_a = sprite.groupcollide(asteroids,bullets,True,True)
+        for c in colides_a:
+            catch+=1
+            asteroid = Enemy(randint(0,650),0,'asteroid.png',65,60,randint(1,5),0)
+            asteroids.add(asteroid)
+    if lose >= 10 or sprite.spritecollide(rocket,monsters,False):
+        wn.blit(text_lose,(220,230))
         finish = 1
-        
+    if catch >= 10:
+        finish = True
+        level_boss = True
+    if level_boss:
+        wn.blit(fon,(0,0))
+        rocket.update()
+        rocket.draw()
+        bullets.draw(wn)
+        bullets.update()
 
 
 
