@@ -2,6 +2,7 @@
 
 from pygame import *
 from random import randint
+from time import time as timer
 wn = display.set_mode((700,500))
 display.set_caption("shooter")
 
@@ -85,15 +86,30 @@ for i in range(3):
     asteroids.add(asteroid)
 
 level_boss = 0
+boss = Enemy(230,60,'boss.png',260,200,8,50)
+
+num_fire =0
+rel_time = False
 while game:
     for e in event.get():
         if e.type == QUIT:
             game = 0
         elif e.type == KEYDOWN:
             if e.key == K_SPACE:
-                fire_s.play() 
-                rocket.fire()
-
+                if num_fire <= 15 and rel_time == False:
+                    fire_s.play() 
+                    rocket.fire()
+                    num_fire += 1
+                elif num_fire >= 15 and rel_time == False:
+                    rel_time = True
+                    rel_timer = timer()
+    if rel_time:
+        if timer() - rel_timer > 3:
+            rel_time = False
+            num_fire =0
+        time_to_fire = 3-int(timer()-rel_time)
+        label_rel = font1.render(f"Почекай ще: {time_to_fire}",True,(255,255,255))
+        wn.blit(label_rel,(550,15))
     if not finish:
         label_lose = font1.render(f'Пропущені: {lose}',True,(255,255,255))
         label_catch = font1.render(f'Збито: {catch}',True,(255,255,255))
@@ -108,6 +124,13 @@ while game:
         asteroids.update()
         wn.blit(label_catch,(10,10))
         wn.blit(label_lose,(10,40))
+        if rel_time:
+            if timer() - rel_timer > 3:
+                rel_time = False
+                num_fire =0
+            time_to_fire = 3-int(timer()-rel_timer)
+            label_rel = font1.render(f"Почекай ще: {time_to_fire}",True,(255,255,255))
+            wn.blit(label_rel,(550,15))
 
         colides = sprite.groupcollide(monsters,bullets,True,True)
         for c in colides:
@@ -119,18 +142,49 @@ while game:
             catch+=1
             asteroid = Enemy(randint(0,650),0,'asteroid.png',65,60,randint(1,5),0)
             asteroids.add(asteroid)
-    if lose >= 10 or sprite.spritecollide(rocket,monsters,False):
-        wn.blit(text_lose,(220,230))
-        finish = 1
-    if catch >= 10:
-        finish = True
-        level_boss = True
-    if level_boss:
+        
+        if catch >= 10:
+            finish = True
+            level_boss = True
+            for a in asteroids:
+                a.kill()
+            for a in monsters:
+                a.kill()
+            
+    elif level_boss:
         wn.blit(fon,(0,0))
+        label_boss_live = font1.render(f"Життя боса: {boss.life}",True,(255,255,255))
+        wn.blit(label_boss_live,(10,10))
+        label_live = font1.render(f"Життя: {rocket.life}",True,(255,255,255))
+        wn.blit(label_live,(10,50))
         rocket.update()
         rocket.draw()
         bullets.draw(wn)
         bullets.update()
+        boss.draw()
+        boss.rect.x += boss.speed
+        if boss.rect.x < 0 or boss.rect.x >470:
+            boss.speed *=-1
+        if sprite.spritecollide(boss, bullets,True):
+            boss.life -= 1
+
+        if rel_time:
+            if timer() - rel_timer > 3:
+                rel_time = False
+                num_fire =0
+            time_to_fire = 3- int(timer()-rel_timer)
+            label_rel = font1.render(f"Почекай ще: {time_to_fire}",True,(255,255,255))
+            wn.blit(label_rel,(550,15))
+    if boss.life <= 0:
+            level_boss = False
+            label_lose = font2.render("Перемога",True,(13,197,11))
+            wn.blit(label_lose,(240,240))
+            boss.life = 0
+    if lose >= 10 or sprite.spritecollide(rocket,monsters,False):
+            wn.blit(text_lose,(220,230))
+            finish = 1
+            
+
 
 
 
