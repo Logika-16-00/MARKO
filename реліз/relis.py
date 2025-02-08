@@ -70,6 +70,7 @@ while game:
             food_x = round(randint(0,400)/10)*10 
             food_y = round(randint(0,400)/10)*10
             appel.play()
+<<<<<<< HEAD
             catch +=1
             
             snakepos.append(snakepos[-1][:])
@@ -112,6 +113,25 @@ while game:
             mixer_music.pause()
       
         if catch == 0:
+=======
+            catch += 1
+            snakepos.append(snakepos[-1][:])
+        if snakepos[0][0] == bomb_x and snakepos[0][1]  == bomb_y:
+            bomb_y = round(randint(0,400)/10)*10 
+            bomb_x = round(randint(0,400)/10)*10
+            wn.blit(text_lose,(150,225))
+            mixer_music.pause()
+            finish =1 
+        if snakepos[0][0] >= ds_width or snakepos[0][0] <=0:
+            wn.blit(text_lose,(150,225))
+            mixer_music.pause()
+            finish =1 
+            # walls.play(1)
+                
+                
+            
+        if snakepos[0][1] >= ds_height or snakepos[0][1] <=0:
+>>>>>>> f1342da90a262127de9d18c152fded9d1d42e747
             wn.blit(text_lose,(150,225))
 
             finish =1 
@@ -122,6 +142,21 @@ while game:
 
             walls.play()
             mixer_music.pause()
+<<<<<<< HEAD
+=======
+        if snakepos[0][1] == bomb_x or snakepos[0][1] ==bomb_y:
+            wn.blit(text_lose,(150,225))
+
+            finish =1 
+
+
+            lose_sound = True
+
+
+            mixer_music.pause()
+
+
+>>>>>>> f1342da90a262127de9d18c152fded9d1d42e747
             
 
             
@@ -132,10 +167,14 @@ while game:
                 snakepos[0][1]  += y_change
     if snakepos[0][1]  >= ds_height or snakepos[0][1] <=0:
             wn.blit(text_lose,(125,225))
+<<<<<<< HEAD
     if snakepos[0][0]  >= ds_width or snakepos[0][0] <=0:
             wn.blit(text_lose,(125,225))
     if catch < 0:
             wn.blit(text_lose,(150,225))
 
+=======
+    
+>>>>>>> f1342da90a262127de9d18c152fded9d1d42e747
     display.update()
     clock.tick(fps)
