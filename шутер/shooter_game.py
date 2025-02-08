@@ -7,13 +7,13 @@ wn = display.set_mode((700,500))
 display.set_caption("shooter")
 
 fps = 60
-fon = transform.scale( image.load("galaxy.jpg"),(700,500))
+fon = transform.scale( image.load("background.png"),(700,500))
 finish = 0
 clock = time.Clock()
 mixer.init()
-mixer.music.load("space.ogg")
+mixer.music.load("snake.ogg")
 mixer.music.play()
-fire_s = mixer.Sound("fire.ogg")
+fire_s = mixer.Sound("ukus.ogg")
 font.init()
 font1 = font.Font(None,30)
 font2 = font.Font(None,80)
