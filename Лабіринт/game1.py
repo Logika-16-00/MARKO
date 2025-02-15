@@ -105,6 +105,7 @@ while True:
     wall10.wall_draw()
     wall11.wall_draw()
     
+    
 
 
     if sprite.collide_rect(hero,enemy):
