@@ -52,8 +52,11 @@ bomb_x = round(randint(0,400)/10)*10
 bomb_y = round(randint(0,400)/10)*10
 width, height = 10,10
 
-button_start = Area(100,100,100,50,(54,65,45))
-button_stop = Area(100,300,100,50,(54,65,45))
+
+button_start = Area(150,164,200,75,(4,45,5))
+button_start1 = Area(160,174,180,55,(4,245,5))
+button_stop = Area(150,260,200,70,(4,45,5))
+button_stop1 = Area(160,270,180,50,(4,245,5))
 snakepos  = [ [x_snake, y_snake]]
 menu = 1
 lose_sound = False
@@ -94,7 +97,10 @@ while game:
     if menu:
         wn.blit(menu_fom,(0,0))
         button_start.fill()
+        button_start1.fill()
         button_stop.fill()
+        button_stop1.fill()
+        
          
     if not finish:
         label_catch = font1.render(f'Рахунок: {catch}',True,(255,255,255))
@@ -127,7 +133,7 @@ while game:
 
             else:
                 print('hukgftryjuknv')
-
+                mixer_music.pause()
                 del snakepos[:1]
                 if len(snakepos) == 0:
                     lose_game =1
@@ -137,8 +143,9 @@ while game:
             if snakepos[0][0] >= ds_width or snakepos[0][1] <=0:
                 wn.blit(text_lose,(150,225))
                 mixer_music.pause()
+                lose_sound = True
                 lose_game =1 
-                # walls.play(1)
+                walls.play(1)
                 
             if snakepos[0][1] >= ds_height or snakepos[0][1] <=0:
                 wn.blit(text_lose,(150,225))
@@ -164,7 +171,8 @@ while game:
                 wn.blit(text_lose,(150,225))
                 mixer_music.pause()
                 lose_game = 1
-                # walls.play(1)
+                lose_sound = True
+                walls.play(1)
                     
             if snakepos[0][1] >= ds_height or snakepos[0][1] <=0:
                 wn.blit(text_lose,(150,225))
