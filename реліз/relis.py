@@ -4,6 +4,17 @@ wn = display.set_mode((500,500))
 fon = transform.scale( image.load("background.png"),(500,500))
 menu_fom = transform.scale( image.load("menu1.png"),(500,500))
 display.set_caption("Змійка")
+class Player(sprite.Sprite):
+    def __init__(self,x,y,image_p,size_x,size_y):
+        super().__init__()
+        self.image = transform.scale(image.load(image_p),(size_x,size_y))
+        self.rect = self.image.get_rect()
+        self.rect.x = x
+        self.rect.y = y
+
+    def draw(self):
+        wn.blit(self.image,(self.rect.x,self.rect.y))
+    
 
 
 
@@ -45,15 +56,20 @@ font2 = font.Font(None,80)
 text_lose = font2.render('You lose!',True,(255,25,2))
 ds_width = 500
 ds_height = 500
-food_x = round(randint(0,400)/10)*10 
-food_y = round(randint(0,400)/10)*10
+food_x = round(randint(0,300)/10)*10 
+food_y = round(randint(0,300)/10)*10
 
-bomb_x = round(randint(0,400)/10)*10 
-bomb_y = round(randint(0,400)/10)*10
+bomb_x = round(randint(0,300)/10)*10 
+bomb_y = round(randint(0,300)/10)*10
 width, height = 10,10
 
-button_start = Area(100,100,100,50,(54,65,45))
-button_stop = Area(100,300,100,50,(54,65,45))
+button_start = Area(150,150,200,90,(54,65,45))
+button_start1 = Area(170,160,170,70,(4,165,5))
+button_stop = Area(150,250,200,90,(54,65,45))
+button_stop1 = Area(170,260,170,70,(4,165,5))
+main = Player(350,350,"main.png",150,150)
+play = Player(140,110,"грати1.png",650,650)
+stop = Player(180,140,"стоп1.png",650,650)
 snakepos  = [ [x_snake, y_snake]]
 menu = 1
 lose_sound = False
@@ -94,11 +110,17 @@ while game:
     if menu:
         wn.blit(menu_fom,(0,0))
         button_start.fill()
+        button_start1.fill()
         button_stop.fill()
+        button_stop1.fill()
+        play.draw()
+        stop.draw()
+    
          
     if not finish:
         label_catch = font1.render(f'Рахунок: {catch}',True,(255,255,255))
         wn.blit(fon,(0,0))
+        main.draw()
 
         for i in range(0, len(snakepos)):
             draw.rect(wn, (12,240,2), [snakepos[i], (width, height)])
