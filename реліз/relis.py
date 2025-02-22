@@ -3,6 +3,7 @@ from random import *
 wn = display.set_mode((500,500))
 fon = transform.scale( image.load("background.png"),(500,500))
 menu_fom = transform.scale( image.load("menu1.png"),(500,500))
+play_again_img = transform.scale(image.load("again1.png"), (650, 500))
 display.set_caption("Змійка")
 class Player(sprite.Sprite):
     def __init__(self,x,y,image_p,size_x,size_y):
@@ -34,6 +35,7 @@ class Area():
     
     def collidepoint(self,x,y):
         return self.rect.collidepoint(x,y)
+
 game = 1
 finish = 1
 x_snake = 300
@@ -73,6 +75,7 @@ play = Player(140,110,"грати1.png",650,650)
 stop = Player(180,140,"стоп1.png",650,650)
 
 
+
 button_start = Area(150,164,200,75,(4,45,5))
 button_start1 = Area(160,174,180,55,(4,245,5))
 button_stop = Area(150,260,200,70,(4,45,5))
@@ -81,6 +84,24 @@ button_stop1 = Area(160,270,180,50,(4,245,5))
 snakepos  = [ [x_snake, y_snake]]
 menu = 1
 lose_sound = False
+def reset_game():
+    global snakepos, x_snake, y_snake, x_change, y_change, food_x, food_y, bomb_x, bomb_y, catch, finish, lose_game,start_game
+    x_snake = 300
+    y_snake = 300
+    x_change = 0
+    y_change = 0
+    snakepos = [[x_snake, y_snake]]
+    food_x = round(randint(0,300)/10)*10 
+    food_y = round(randint(0,300)/10)*10
+    bomb_x = round(randint(0,300)/10)*10 
+    bomb_y = round(randint(0,300)/10)*10
+    catch = 1
+    finish = 0
+    lose_game = False
+    start_game = 0
+
+button_retry = Area(150,350,200,70,(4,45,5))
+button_retry1 = Area(160,360,180,50,(4,245,5))
 
 
 
@@ -115,6 +136,17 @@ while game:
                 if button_start.collidepoint(x,y):
                      menu = 0
                      finish = 0
+                if lose_game and 70 <= x <=100 and 120<= y <=220:
+                    reset_game()
+                if lose_game and 70 <= x <=100 and 120<= y <=220:
+                    reset_game()
+    if lose_game:
+         wn.blit(text_lose,(150,225))
+         button_retry.fill()
+         finish = 1
+    if finish:
+        wn.blit(play_again_img, (70, 120))
+        finish = 1
     if menu:
         wn.blit(menu_fom,(0,0))
         button_start.fill()
@@ -123,6 +155,7 @@ while game:
         button_stop1.fill()
         play.draw()
         stop.draw()
+  # Відобр
     
         
          
