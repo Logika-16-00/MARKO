@@ -3,7 +3,6 @@ from random import *
 wn = display.set_mode((500,500))
 fon = transform.scale( image.load("background.png"),(500,500))
 menu_fom = transform.scale( image.load("menu1.png"),(500,500))
-play_again_img = transform.scale(image.load("again1.png"), (650, 500))
 display.set_caption("Змійка")
 class Player(sprite.Sprite):
     def __init__(self,x,y,image_p,size_x,size_y):
@@ -73,6 +72,7 @@ button_stop1 = Area(170,260,170,70,(4,165,5))
 main = Player(350,350,"main.png",150,150)
 play = Player(140,110,"грати1.png",650,650)
 stop = Player(180,140,"стоп1.png",650,650)
+again = Player(-30,90,"again3.png",950,950)
 
 
 
@@ -100,8 +100,8 @@ def reset_game():
     lose_game = False
     start_game = 0
 
-button_retry = Area(150,350,200,70,(4,45,5))
-button_retry1 = Area(160,360,180,50,(4,245,5))
+button_retry = Area(170,300,200,70,(4,45,5))
+button_retry1 = Area(180,310,180,50,(4,245,5))
 
 
 
@@ -134,18 +134,20 @@ while game:
                      game= 0
 
                 if button_start.collidepoint(x,y):
-                     menu = 0
-                     finish = 0
-                if lose_game and 70 <= x <=100 and 120<= y <=220:
+                    menu = 0
+                    finish = 0
+                if button_retry.collidepoint(x,y):
                     reset_game()
-                if lose_game and 70 <= x <=100 and 120<= y <=220:
-                    reset_game()
+
+                #if lose_game and 70 <= x <=100 and 120<= y <=220:
+                    #reset_game()
     if lose_game:
          wn.blit(text_lose,(150,225))
          button_retry.fill()
+         button_retry1.fill()
+         again.draw()
          finish = 1
     if finish:
-        wn.blit(play_again_img, (70, 120))
         finish = 1
     if menu:
         wn.blit(menu_fom,(0,0))
