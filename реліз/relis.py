@@ -1,9 +1,11 @@
 from pygame import *
 from random import *
+import json
 wn = display.set_mode((500,500))
 fon = transform.scale( image.load("background.png"),(500,500))
 menu_fom = transform.scale( image.load("menu1.png"),(500,500))
 display.set_caption("Змійка")
+
 class Player(sprite.Sprite):
     def __init__(self,x,y,image_p,size_x,size_y):
         super().__init__()
@@ -73,6 +75,7 @@ main = Player(350,350,"main.png",150,150)
 play = Player(140,110,"грати1.png",650,650)
 stop = Player(180,140,"стоп1.png",650,650)
 again = Player(-30,90,"again3.png",950,950)
+leaders = Player(140,230,"лідери.png",650,650)
 
 
 
@@ -80,6 +83,8 @@ button_start = Area(150,164,200,75,(4,45,5))
 button_start1 = Area(160,174,180,55,(4,245,5))
 button_stop = Area(150,260,200,70,(4,45,5))
 button_stop1 = Area(160,270,180,50,(4,245,5))
+button_leader = Area(150,356,200,70,(4,45,5))
+button_leader1 = Area(160,366,180,50,(56,245,5))
 
 snakepos  = [ [x_snake, y_snake]]
 menu = 1
@@ -103,8 +108,10 @@ def reset_game():
 button_retry = Area(170,300,200,70,(4,45,5))
 button_retry1 = Area(180,310,180,50,(4,245,5))
 
-
-
+leadboard = transform.scale( image.load("fonled.png"),(500,500))
+with open("record.json","r",encoding="utf-8" ) as file:
+        data = json.load(file)
+    
 lose_game = False
 while game:
     wn.fill((0,0,0))
@@ -138,6 +145,11 @@ while game:
                     finish = 0
                 if button_retry.collidepoint(x,y):
                     reset_game()
+                if button_leader.collidepoint(x,y):
+                    menu = 0 
+                    leadboard = 1
+                
+        
 
                 #if lose_game and 70 <= x <=100 and 120<= y <=220:
                     #reset_game()
@@ -155,9 +167,11 @@ while game:
         button_start1.fill()
         button_stop.fill()
         button_stop1.fill()
+        button_leader.fill()
+        button_leader1.fill()
         play.draw()
         stop.draw()
-  # Відобр
+        leaders.draw()
     
         
          
@@ -188,11 +202,9 @@ while game:
             bubux.play()
             catch -=1
             if not snakepos[0][0]:
-                print(11111111111111111111111111)
                 lose_game = 1
 
             else:
-                print('hukgftryjuknv')
                 mixer_music.pause()
                 del snakepos[:1]
                 if len(snakepos) == 0:
@@ -268,3 +280,7 @@ while game:
 
     display.update()
     clock.tick(fps)
+
+with open("record.json","r",encoding="utf-8" ) as file:
+        json.load(catch,file)
+    
