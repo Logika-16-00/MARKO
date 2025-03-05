@@ -109,14 +109,16 @@ button_retry = Area(170,300,200,70,(4,45,5))
 button_retry1 = Area(180,310,180,50,(4,245,5))
 
 leadboard = transform.scale( image.load("fonled.png"),(500,500))
+leaderbord = 0
+
 with open("record.json","r",encoding="utf-8" ) as file:
         data = json.load(file)
 
-text1 = font1.render(f'1. -{data[0]}', True, (255, 25, 2))
-text2 = font1.render(f'2. -{data[1]}', True, (255, 25, 2))
-text3 = font1.render(f'3. -{data[2]}', True, (255, 25, 2))
-text4 = font1.render(f'4. -{data[3]}', True, (255, 25, 2))
-text5 = font1.render(f'5. -{data[4]}', True, (255, 25, 2))
+text1 = font1.render(f'1. - {data[0]}', True, (255, 25, 2))
+text2 = font1.render(f'2. - {data[1]}', True, (255, 25, 2))
+text3 = font1.render(f'3. - {data[2]}', True, (255, 25, 2))
+text4 = font1.render(f'4. - {data[3]}', True, (255, 25, 2))
+text5 = font1.render(f'5. - {data[4]}', True, (255, 25, 2))
 lose_game = False
 while game:
     wn.fill((0,0,0))
@@ -145,17 +147,17 @@ while game:
                 leaderbord = False
         if e.type == MOUSEBUTTONDOWN and e.button == 1:
                 x,y = e.pos
-                if button_stop.collidepoint(x,y):
+                if button_stop.collidepoint(x,y) and menu:
                      game= 0
 
-                if button_start.collidepoint(x,y):
+                if button_start.collidepoint(x,y) and menu:
                     menu = 0
                     finish = 0
-                if button_retry.collidepoint(x,y):
+                if button_retry.collidepoint(x,y) and lose_game:
                     reset_game()
-                if button_leader.collidepoint(x,y):
+                if button_leader.collidepoint(x,y) and menu:
                     menu = 0 
-                    leadboard = 1
+                    leaderbord = 1
                 
         
 
@@ -180,7 +182,7 @@ while game:
         play.draw()
         stop.draw()
         leaders.draw()
-    if leadboard:
+    if leaderbord:
         wn.blit(text1,(50,50))
         wn.blit(text2,(50,100))
         wn.blit(text3,(50,150))
@@ -289,12 +291,15 @@ while game:
             if catch < 0:
                  lose_game = 1
     if lose_game:
-                    wn.blit(text_lose,(150,225))
-                    finish = 1
+        wn.blit(text_lose,(150,225))
+        finish = 1
+        if catch not in data:
+            data.append(catch)
+        data.sort(reverse = True)
+        with open("record.json","w",encoding="utf-8" ) as file:
+            json.dump(data,file)
 
     display.update()
     clock.tick(fps)
 
-with open("record.json","r",encoding="utf-8" ) as file:
-        json.load(catch,file)
     
