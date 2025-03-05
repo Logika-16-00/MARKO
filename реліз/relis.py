@@ -111,7 +111,12 @@ button_retry1 = Area(180,310,180,50,(4,245,5))
 leadboard = transform.scale( image.load("fonled.png"),(500,500))
 with open("record.json","r",encoding="utf-8" ) as file:
         data = json.load(file)
-    
+
+text1 = font1.render(f'1. -{data[0]}', True, (255, 25, 2))
+text2 = font1.render(f'2. -{data[1]}', True, (255, 25, 2))
+text3 = font1.render(f'3. -{data[2]}', True, (255, 25, 2))
+text4 = font1.render(f'4. -{data[3]}', True, (255, 25, 2))
+text5 = font1.render(f'5. -{data[4]}', True, (255, 25, 2))
 lose_game = False
 while game:
     wn.fill((0,0,0))
@@ -135,6 +140,9 @@ while game:
                 start_game = 1
                 x_change = -10
                 y_change = 0
+            if e.key == K_q:
+                menu = True 
+                leaderbord = False
         if e.type == MOUSEBUTTONDOWN and e.button == 1:
                 x,y = e.pos
                 if button_stop.collidepoint(x,y):
@@ -172,6 +180,12 @@ while game:
         play.draw()
         stop.draw()
         leaders.draw()
+    if leadboard:
+        wn.blit(text1,(50,50))
+        wn.blit(text2,(50,100))
+        wn.blit(text3,(50,150))
+        wn.blit(text4,(50,200))
+        wn.blit(text5,(50,250))
     
         
          
